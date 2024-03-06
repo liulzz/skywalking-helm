@@ -29,12 +29,12 @@ maintainers:
   - name: kezhenxu94
     email: kezhenxu94@163.com
 
-dependencies:
-  - name: elasticsearch
-    version: ~7.17.1
-    repository: https://helm.elastic.co/
-    condition: elasticsearch.enabled
-  - name: postgresql
-    version: 12.1.2
-    repository: https://raw.githubusercontent.com/bitnami/charts/archive-full-index/bitnami
-    condition: postgresql.enabled
+# dependencies:
+#   - name: elasticsearch
+#     version: ~7.17.1
+#     repository: https://helm.elastic.co/
+#     condition: elasticsearch.enabled
+#   - name: postgresql
+#     version: 12.1.2
+#     repository: https://raw.githubusercontent.com/bitnami/charts/archive-full-index/bitnami
+#     condition: postgresql.enabled
