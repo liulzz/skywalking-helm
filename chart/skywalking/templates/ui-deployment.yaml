@@ -63,6 +63,9 @@ spec:
       imagePullSecrets:
 {{ toYaml .Values.imagePullSecrets | indent 8 }}
 {{- end }}
+      initContainers:
+        {{- include "skywalking.containers.wait-for-storage" . | nindent 6 }}
+        {{- include "skywalking.containers.oap-init-job" . | nindent 6 }}
       containers:
       - name: {{ .Values.ui.name }}
         image: {{ .Values.ui.image.repository }}:{{ required "ui.image.tag is required" .Values.ui.image.tag }}

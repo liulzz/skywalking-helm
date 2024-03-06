@@ -152,3 +152,18 @@ Create the name of the service account to use for the satellite cluster
   value: "{{ .Values.postgresql.auth.password }}"
 {{- end }}
 {{- end -}}
+
+# Template for oap init job container 
+{{- define "skywalking.containers.oap-init-job" -}}
+- name: oap-init-job
+  image: {{ .Values.oap.image.repository }}:{{ required "oap.image.tag is required" .Values.oap.image.tag }}
+  imagePullPolicy: {{ .Values.oap.image.pullPolicy }}
+  env:
+  - name: JAVA_OPTS
+    value: "{{ .Values.oap.javaOpts }} -Dmode=init"
+    {{- include "skywalking.oap.envs.storage" . | nindent 2 }}
+    {{- range $key, $value :=  .Values.oap.env }}
+  - name: {{ $key }}
+    value: {{ $value | quote }}
+    {{- end }}
+{{- end -}}
